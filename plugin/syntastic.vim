@@ -524,15 +524,7 @@ function! SyntasticMake(options) " {{{2
             execute 'lcd ' . fnameescape(old_cwd)
         endif
 
-        try
-            silent lolder
-        catch /\m^Vim\%((\a\+)\)\=:E380/
-            " E380: At bottom of quickfix stack
-            call setloclist(0, [], 'r')
-        catch /\m^Vim\%((\a\+)\)\=:E776/
-            " E776: No location list
-            " do nothing
-        endtry
+        silent! lolder
     else
         let errors = []
     endif
